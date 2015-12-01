@@ -9,13 +9,12 @@ import sjsu.cmpe.class273.gateway.repo.DeviceRepo;
  * Created by squall on 11/12/15.
  */
 @RestController
-@RequestMapping("/bootstrap")
 public class DeviceBootstrap
 {
     @Autowired
     private DeviceRepo dvRepo;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="/bootstrap", method = RequestMethod.GET)
     private String bootstrapOperation(
             @RequestParam("manufacturer") String manufacturer,
             @RequestParam("model") String model,
@@ -31,7 +30,7 @@ public class DeviceBootstrap
                 dv.getSupportMode().equals(supportMode)
            )
         {
-            return "Device: " + sn + "-" + model;
+            return "Device: " + sn + "-" + model + " recognized.";
         }
         return "Device not recognized.";
     }
